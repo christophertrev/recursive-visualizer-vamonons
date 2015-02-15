@@ -10,9 +10,10 @@ fs.readFile(__dirname +'/' +arguments[0], 'utf8', function (err,data) {
   // console.log(data.split('\n'));
   //Create object to place into PsudeoCode area
   var results = {}
-  results.pseudoCode = createPseudoCode(data);
+  // results.pseudoCode = createPseudoCode(data);
   // console.log('end Product', createPseudoCode(data))
-  console.log(results)
+  // console.log(results)
+  console.log(createAlgorithmCode(data))
 });
 
 
@@ -23,7 +24,20 @@ var createPseudoCode = function (codeStr){
   var results = codeStr.replace(/var |{|}/g,'')
   // Remove empty Lines
   results = results.replace(/^\s*[\r\n]/gm,'')
-  return results
+  return results;
+}
+
+var createAlgorithmCode = function (codeStr){
+  // Break into lines
+  var codeLines = codeStr.split(/\n/g);
+  var results = [];
+  codeLines.forEach(function (value, index, array){
+    // if( )
+    results.push( '_(' + index+'); '  + value )
+  })
+
+
+  return results;
 }
 
 
